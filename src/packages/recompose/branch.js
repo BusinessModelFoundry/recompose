@@ -1,4 +1,4 @@
-import { createFactory } from 'react'
+import React from 'react'
 import setDisplayName from './setDisplayName'
 import wrapDisplayName from './wrapDisplayName'
 
@@ -9,10 +9,12 @@ const branch = (test, left, right = identity) => BaseComponent => {
   let rightFactory
   const Branch = props => {
     if (test(props)) {
-      leftFactory = leftFactory || createFactory(left(BaseComponent))
+      leftFactory =
+        leftFactory || React.createElement.bind(null, left(BaseComponent))
       return leftFactory(props)
     }
-    rightFactory = rightFactory || createFactory(right(BaseComponent))
+    rightFactory =
+      rightFactory || React.createElement.bind(null, right(BaseComponent))
     return rightFactory(props)
   }
 

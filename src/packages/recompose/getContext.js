@@ -1,9 +1,9 @@
-import { createFactory } from 'react'
+import { createElement } from 'react'
 import setDisplayName from './setDisplayName'
 import wrapDisplayName from './wrapDisplayName'
 
 const getContext = contextTypes => BaseComponent => {
-  const factory = createFactory(BaseComponent)
+  const factory = createElement.bind(null, BaseComponent)
   const GetContext = (ownerProps, context) =>
     factory({
       ...ownerProps,

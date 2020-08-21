@@ -1,4 +1,4 @@
-import React, { createFactory } from 'react'
+import React from 'react'
 import { mount } from 'enzyme'
 import sinon from 'sinon'
 import { hoistStatics, mapProps } from '../'
@@ -23,7 +23,7 @@ test('does not copy blacklisted static properties to new component ', () => {
   BaseComponent.bar = () => {}
 
   const EnhancedComponent = hoistStatics(
-    comp => createFactory(comp),
+    comp => React.createElement.bind(null, comp),
     { bar: true } // Blacklist
   )(BaseComponent)
 

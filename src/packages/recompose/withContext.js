@@ -1,9 +1,9 @@
-import { createFactory, Component } from 'react'
+import React, { Component } from 'react'
 import setDisplayName from './setDisplayName'
 import wrapDisplayName from './wrapDisplayName'
 
 const withContext = (childContextTypes, getChildContext) => BaseComponent => {
-  const factory = createFactory(BaseComponent)
+  const factory = React.createElement.bind(null, BaseComponent)
   class WithContext extends Component {
     getChildContext = () => getChildContext(this.props)
 

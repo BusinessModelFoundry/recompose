@@ -1,9 +1,9 @@
-import { createFactory, Component } from 'react'
+import React, { Component } from 'react'
 import setDisplayName from './setDisplayName'
 import wrapDisplayName from './wrapDisplayName'
 
 const shouldUpdate = test => BaseComponent => {
-  const factory = createFactory(BaseComponent)
+  const factory = React.createElement.bind(null, BaseComponent)
   class ShouldUpdate extends Component {
     shouldComponentUpdate(nextProps) {
       return test(this.props, nextProps)

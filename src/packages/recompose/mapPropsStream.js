@@ -1,4 +1,4 @@
-import { createFactory } from 'react'
+import React from 'react'
 import $$observable from 'symbol-observable'
 import { componentFromStreamWithConfig } from './componentFromStream'
 import setDisplayName from './setDisplayName'
@@ -13,7 +13,7 @@ export const mapPropsStreamWithConfig = config => {
     toESObservable: identity,
   })
   return transform => BaseComponent => {
-    const factory = createFactory(BaseComponent)
+    const factory = React.createElement.bind(null, BaseComponent)
     const { fromESObservable, toESObservable } = config
     return componentFromStream(props$ => ({
       subscribe(observer) {

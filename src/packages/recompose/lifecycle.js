@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
-import { createFactory, Component } from 'react'
+import React, { Component } from 'react'
 import setDisplayName from './setDisplayName'
 import wrapDisplayName from './wrapDisplayName'
 
 const lifecycle = spec => BaseComponent => {
-  const factory = createFactory(BaseComponent)
+  const factory = React.createElement.bind(null, BaseComponent)
 
   if (process.env.NODE_ENV !== 'production' && spec.hasOwnProperty('render')) {
     console.error(
